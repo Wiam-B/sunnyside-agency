@@ -13,6 +13,7 @@
   --grey-550: hsl(232, 10%, 55%);
   --grey-400: hsl(210, 4%, 67%);
   --white: hsl(0, 100%, 100%);
+  --beige: hsl(10, 19%, 94%);
 }
 
 body {
@@ -70,33 +71,102 @@ nav li {
   cursor: pointer;
 }
 
-.parent {
+.branding-section {
   display: grid;
-  grid-template-columns: 1fr 1fr; 
-  width: 100%; 
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
 }
 
-
-.div1, .div2 {
+.branding-content {
   display: flex;
-  justify-content: center;
-  box-sizing: border-box;
-  align-items: center;
+  flex-direction: column;
+  background-color: var(--beige);
+  justify-content: center; /* Centre verticalement */
+  align-items: flex-start; /* Aligne les éléments à gauche */
+  text-align: left; /* Texte aligné à gauche */
+  padding: 8rem; /* Optionnel : ajout de marge intérieure */
 }
 
-.div1 {
-  flex-direction: column;
-  background-color: var(--white);
+/* Inverse l’ordre pour les sections avec .reverse */
+.branding-section.reverse {
+  direction: rtl; /* méthode simple pour inverser l’ordre */
 }
-.div1 h2{
+
+.branding-section.reverse > * {
+  direction: ltr; /* pour remettre le texte normal */
+}
+
+.section-title {
   font-family: "Fraunces", serif;
   font-weight: 900;
   font-size: 3rem;
   color: var(--grey-950);
-
 }
-.div2 img {
+.branding-image img {
   width: 100%;
   height: auto;
   display: block;
+}
+.section-description {
+  line-height: 30px;
+  color: var(--grey-600);
+}
+
+.learn-more-button {
+  position: relative;
+  font-family: "Fraunces", serif;
+  color: var(--grey-950);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+/* Pseudo-élément pour la ligne */
+.learn-more-button::after {
+  content: "";
+  position: absolute;
+  top: 90%; /* Ajuste cette valeur pour monter ou descendre la ligne */
+  left: 0;
+  width: 100%; /* Plus large que le texte */
+  height: 8px; /* Épaisseur de la ligne */
+  background-color: var(--yellow-500);
+  opacity: 0;
+  transition: opacity 0.3s ease, top 0.3s ease;
+  border-radius: 5px;
+}
+
+/* Au survol, on rend la ligne visible */
+.learn-more-button:hover::after {
+  opacity: 1;
+  top: 100%; /* Position normale sous le texte */
+}
+
+.branding-content-image {
+  background-image: url('./images/desktop/image-graphic-design.jpg'); /* ton image ici */
+  background-size: cover;      /* l’image couvre toute la div */
+  background-position: center; /* centre l’image */
+  background-repeat: no-repeat; /* pas de répétition */
+  
+  color: white;          /* texte blanc pour contraster */
+  padding: 2rem;         /* espace intérieur */
+  max-width: 600px;      /* largeur max si tu veux */
+  border-radius: 8px;    /* coins arrondis optionnels */
+  
+  /* Pour que le texte soit plus lisible, tu peux ajouter une superposition sombre */
+  position: relative; 
+}
+
+.branding-content-image ::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* noir transparent */
+  border-radius: 8px;
+  z-index: 0;
+}
+
+.branding-content-image  > * {
+  position: relative;
+  z-index: 1; /* texte au-dessus de l’overlay */
 }
