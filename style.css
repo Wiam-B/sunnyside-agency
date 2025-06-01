@@ -5,7 +5,7 @@
   --green-800: hsl(167, 40%, 24%);
   --blue: hsl(228, 45%, 44%);
   --blue-800: hsl(198, 62%, 26%);
-  --green-500: hsl(167, 34%, 41%);
+  --green-500: hsl(167, 34%, 61%);
 
   /* === Neutral Colors === */
   --grey-950: hsl(212, 27%, 19%);
@@ -14,10 +14,16 @@
   --grey-400: hsl(210, 4%, 67%);
   --white: hsl(0, 100%, 100%);
   --beige: hsl(10, 19%, 94%);
+
+  /* === Font Families === */
+  --font-title: "Fraunces", serif;
+  --font-body: "Barlow", sans-serif;
 }
 
 body {
   font-size: 18px;
+  margin: 0;
+  padding: 0;
 }
 
 header {
@@ -30,6 +36,7 @@ header {
   height: 100vh;
 }
 
+/* Navigation */
 nav {
   display: flex;
   justify-content: space-between;
@@ -42,16 +49,254 @@ nav ul {
   gap: 2rem;
   list-style: none;
 }
-
-nav li {
+nav ul li a {
   color: var(--white);
   font-weight: bold;
   cursor: pointer;
+  padding: 1rem 1rem;
+  border-radius: 35px;
+  transition: background-color 0.3s, color 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+nav ul li a:hover {
+  background-color: var(--white);
+  color: var(--grey-950);
 }
 
 /* Cacher le bouton menu-toggle en desktop */
 .menu-toggle {
   display: none;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
+  margin-top: 0.1rem;
+}
+
+.hero h1 {
+  font-family: var(--font-title);
+  font-weight: 900;
+  font-size: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+
+/* Branding Section */
+.branding-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.branding-content {
+  background-color: var(--beige);
+  padding: 8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centre verticalement */
+  align-items: flex-start; /* Aligne les éléments à gauche */
+  text-align: left; /* Texte aligné à gauche */
+}
+
+/* Inverse l’ordre pour les sections avec .reverse */
+.branding-section.reverse {
+  direction: rtl;
+}
+
+.branding-section.reverse > * {
+  direction: ltr; /* pour remettre le texte normal */
+}
+
+/* Section Title and Button */
+.section-title {
+  font-family: var(--font-title);
+  font-weight: 900;
+  font-size: 3rem;
+  color: var(--grey-950);
+}
+
+.branding-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.section-description {
+  line-height: 1.6;
+  color: var(--grey-600);
+}
+
+.learn-more-button,
+.learn-more-button2 {
+  position: relative;
+  font-family: var(--font-title);
+  color: var(--grey-950);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.learn-more-button::after,
+.learn-more-button2::after {
+  content: "";
+  position: absolute;
+  top: 90%;
+  left: 0;
+  width: 100%;
+  height: 8px; /* Épaisseur de la ligne */
+  opacity: 0;
+  transition: opacity 0.3s ease, top 0.3s ease;
+  border-radius: 5px;
+}
+
+.learn-more-button:hover::after {
+  opacity: 1;
+  top: 100%;
+  background-color: var(--yellow-500);
+}
+.learn-more-button2:hover::after {
+  opacity: 1;
+  top: 100%;
+  background-color: var(--red-400);
+}
+
+.branding-box {
+  position: relative;
+}
+
+.branding-box img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Shared Text Block for Branding Image */
+.branding-text {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+  font-weight: 700;
+}
+
+.branding-text.green {
+  color: var(--green-800);
+}
+
+.branding-text.blue {
+  color: var(--blue-800);
+}
+
+.testimonials {
+  text-align: center;
+  padding: 5rem 2rem;
+  background-color: var(--beige);
+}
+
+.testimonial-title {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 3rem;
+  color: var(--grey-550);
+}
+
+.testimonial-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.testimonial-card {
+  max-width: 300px;
+  text-align: center;
+}
+
+.testimonial-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+}
+
+.testimonial-text {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--grey-600);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.testimonial-name {
+  font-family: var(--font-title);
+  font-weight: 700;
+  color: var(--grey-950);
+}
+
+.testimonial-role {
+  font-size: 0.85rem;
+  color: var(--grey-400);
+}
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 colonnes par défaut (desktop) */
+}
+
+.image-gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.footer {
+  background-color: var(--green-500);
+  color: var(--white);
+  text-align: center;
+  padding: 100px;
+}
+
+.footer-logo {
+  margin-bottom: 3rem;
+  fill: var(--green-800);
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  list-style: none;
+  margin-bottom: 4rem;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--green-800);
+}
+.footer-links li:hover {
+  color: var(--white);
+}
+.social-icons {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+
+  gap: 2rem;
+}
+.social-icons img {
+  transition: filter 0.1s ease;
+}
+
+.social-icons img:hover {
+  filter: brightness(0) invert(1); /* rend l'icône blanche si SVG est noir */
 }
 
 /* MEDIA QUERY : pour mobile */
@@ -93,172 +338,26 @@ nav li {
     border-bottom: 20px solid var(--white); /* couleur du triangle (fond menu) */
   }
 
-  nav ul li {
+  nav ul li a{
     color: var(--grey-600);
+  }
+
+  nav ul li a:hover {
+    background-color: var(--yellow-500);
+    padding: 0.5rem 1rem;
+    border-radius: 35px;
+    text-transform: uppercase;
+    color: var(--grey-950);
   }
 
   nav ul.show {
     display: flex; /* afficher le menu quand on clique */
   }
-  
-  
-}
 
-.hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5rem;
-  margin-top: 6rem;
-}
-
-.hero h1 {
-  font-family: "Fraunces", serif;
-  font-weight: 900;
-  font-size: 3rem;
-  text-transform: uppercase;
-  letter-spacing: 5px;
-  margin: 0;
-}
-
-nav li {
-  color: var(--white);
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.branding-section {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  width: 100%;
-}
-
-.branding-content {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--beige);
-  justify-content: center; /* Centre verticalement */
-  align-items: flex-start; /* Aligne les éléments à gauche */
-  text-align: left; /* Texte aligné à gauche */
-  padding: 8rem; /* Optionnel : ajout de marge intérieure */
-}
-
-/* Inverse l’ordre pour les sections avec .reverse */
-.branding-section.reverse {
-  direction: rtl; /* méthode simple pour inverser l’ordre */
-}
-
-.branding-section.reverse > * {
-  direction: ltr; /* pour remettre le texte normal */
-}
-
-.section-title {
-  font-family: "Fraunces", serif;
-  font-weight: 900;
-  font-size: 3rem;
-  color: var(--grey-950);
-}
-.branding-image img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-.section-description {
-  line-height: 30px;
-  color: var(--grey-600);
-}
-
-.learn-more-button {
-  position: relative;
-  font-family: "Fraunces", serif;
-  color: var(--grey-950);
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  text-decoration: none;
-}
-.learn-more-button2 {
-  position: relative;
-  font-family: "Fraunces", serif;
-  color: var(--grey-950);
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  text-decoration: none;
-}
-
-.learn-more-button::after {
-  content: "";
-  position: absolute;
-  top: 90%; /* Ajuste cette valeur pour monter ou descendre la ligne */
-  left: 0;
-  width: 100%; /* Plus large que le texte */
-  height: 8px; /* Épaisseur de la ligne */
-  background-color: var(--yellow-500);
-  opacity: 0;
-  transition: opacity 0.3s ease, top 0.3s ease;
-  border-radius: 5px;
-}
-.learn-more-button2::after {
-  content: "";
-  position: absolute;
-  top: 90%; /* Ajuste cette valeur pour monter ou descendre la ligne */
-  left: 0;
-  width: 100%; /* Plus large que le texte */
-  height: 8px; /* Épaisseur de la ligne */
-  background-color: var(--red-400);
-  opacity: 0;
-  transition: opacity 0.3s ease, top 0.3s ease;
-  border-radius: 5px;
-}
-
-.learn-more-button:hover::after {
-  opacity: 1;
-  top: 100%;
-}
-.learn-more-button2:hover::after {
-  opacity: 1;
-  top: 100%;
-}
-
-.branding-box {
-  position: relative;
-}
-
-.branding-box img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.branding-text1 {
-  position: absolute;
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: var(--green-800);
-  text-align: center;
-  z-index: 2;
-  font-weight: 700;
-}
-
-.branding-text2 {
-  position: absolute;
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: var(--blue-800);
-  text-align: center;
-  z-index: 2;
-  font-weight: 700;
-}
-/* Mobile */
-@media (max-width: 768px) {
   .branding-section {
     display: flex;
     flex-direction: column;
-}
-
+  }
   /* Ordre normal (image puis texte) */
   .branding-section .branding-image {
     order: 1;
@@ -267,8 +366,8 @@ nav li {
     order: 2;
     padding: 2rem; /* réduire le padding sur mobile */
     justify-content: center; /* centre verticalement le contenu du bloc */
-    align-items: center;     /* centre horizontalement */
-    text-align: center;      /* centre le texte */
+    align-items: center; /* centre horizontalement */
+    text-align: center; /* centre le texte */
   }
 
   /* Pour la section .reverse, on remet le même ordre image puis texte */
@@ -278,73 +377,8 @@ nav li {
   .branding-section.reverse .branding-content {
     order: 2;
   }
-}
-.testimonials {
-  text-align: center;
-  padding: 5rem 2rem;
-  background-color: var(--beige);
-}
 
-.testimonial-title {
-  font-family: "Fraunces", serif;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 3rem;
-  color: var(--grey-550);
-}
-
-.testimonial-cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-}
-
-.testimonial-card {
-  max-width: 300px;
-  text-align: center;
-}
-
-.testimonial-avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  margin-bottom: 1.5rem;
-}
-
-.testimonial-text {
-  font-family: "Barlow", sans-serif;
-  font-size: 0.95rem;
-  color: var(--grey-600);
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
-}
-
-.testimonial-name {
-  font-family: "Fraunces", serif;
-  font-weight: 700;
-  color: var(--grey-950);
-}
-
-.testimonial-role {
-  font-size: 0.85rem;
-  color: var(--grey-400);
-}
-.image-gallery {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 colonnes par défaut (desktop) */
-}
-
-.image-gallery img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Sur écrans plus petits (mobile), on passe à 2 colonnes */
-@media (max-width: 600px) {
   .image-gallery {
-    grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
-  }
+    grid-template-columns: repeat(2,1fr);
+}
 }
